@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <a asp-action="create" asp-controller="Wedding">Create</a>
+    <a asp-action="logout" asp-controller="Home">LOGOUT</a>
+    WOW MUCH C# VERY HTML
+    <p>Welcome @ViewBag.user.FirstName</p>
+    @foreach(var value in Model){
+        <p>@value.WedderOne @value.WedderTwo</p>
+        <p>@value.Date.ToString("MM-dd-yy")</p>
+        <p>@value.Guests.Count</p>
+            <p>@value.CreatorId</p>
+            <p>@ViewBag.user.UserId</p>
+        int creatorId = value.CreatorId;
+        int userId = ViewBag.user.UserId;
+        
+        @if(creatorId == userId){
+            <a asp-action="delete" asp-controller="Wedding" asp-route-weddingId="@value.WeddingId">Delete</a>
+        }else{
+            bool attend = false;
+            @foreach(var user in @value.Guests){
+                if(user.user !=null){
+                    if(user.user.UserId == ViewBag.user.UserId){
+                        attend = true;
+                        break;
+                    }
+                }
+            }
+            if(attend){
+                <a asp-action="unrsvp" asp-controller="Wedding" asp-route-weddingId="@value.WeddingId">UNRSVP</a>
+            }else{
+                <a asp-action="rsvp" asp-controller="Wedding" asp-route-weddingId="@value.WeddingId">RSVP</a>
+            }
+        }
+    }
+</body>
+</html>

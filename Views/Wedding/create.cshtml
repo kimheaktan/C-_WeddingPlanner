@@ -1,0 +1,22 @@
+@model Wedding
+<div class="container" style="padding-top: 5rem; margin: 0 auto;">
+<form asp-action="AddNewWedding" asp-controller="Wedding" method="post">
+<div class="form-group">
+<span asp-validation-for="WedderOne"></span>
+<input asp-for="WedderOne" placeholder="Enter wedder one:">
+</div>
+<div class="form-group">
+<span asp-validation-for="WedderTwo"></span>
+<input asp-for="WedderTwo" placeholder="Enter wedder two:">
+</div>
+<div class="form-group">
+<span asp-validation-for="Date"></span>
+<input asp-for="Date">
+</div>
+<div class="form-group">
+<span asp-validation-for="Address"></span>
+<input asp-for="Address" placeholder="Ender Address">
+</div>
+<button type="submit">Create</button>
+</form>
+</div>
